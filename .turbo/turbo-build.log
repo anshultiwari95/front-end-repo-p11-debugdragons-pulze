@@ -1,0 +1,12 @@
+
+> web@1.0.0 build C:\Users\anshu\My Projects\pulze\apps\web
+> next build
+
+   Creating an optimized production build ...
+uncaughtException [Error: EPERM: operation not permitted, open 'C:\Users\anshu\My Projects\pulze\apps\web\.next\trace'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\anshu\\My Projects\\pulze\\apps\\web\\.next\\trace'
+}
+ ELIFECYCLE  Command failed with exit code 1.

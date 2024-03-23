@@ -1,0 +1,30 @@
+// {
+//   "extends": "tsconfig/nextjs.json",
+//   "compilerOptions": {
+//     "plugins": [{ "name": "next" }]
+//   },
+//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+//   "exclude": ["node_modules"]
+// }
+{
+  "extends": "tsconfig/react-library.json",
+  "include": [
+    ".",
+    ".next/types/**/*.ts",
+    "../../packages/ui/components/DatePickerWithPresets.tsx",
+  ],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "target": "es2017",
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next",
+      },
+    ],
+  },
+}
