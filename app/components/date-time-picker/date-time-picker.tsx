@@ -33,6 +33,7 @@ import {
 } from "../../components/tabs";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CalendarIcon, Clock3 } from "lucide-react";
+
 export type Granularity =
   | "day"
   | "month"
@@ -189,11 +190,11 @@ const DateTimePicker = React.forwardRef<HTMLDivElement, DateTimePickerProps>(
                   {Boolean(state.hasTime) && (
                     <div className="flex  w-full pl-4 justify-start items-center">
                       <span>Time:</span>
-                      {/* <TimeField
+                      <TimeField
                         value={state.timeValue}
                         // eslint-disable-next-line @typescript-eslint/unbound-method
                         onChange={state.setTimeValue}
-                      /> */}
+                      />
                     </div>
                   )}
                 </TabsContent>

@@ -11,7 +11,7 @@ import { signIn, useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { Session } from "next-auth";
 import { z } from "zod";
-import {fetchData} from "../../utils/axios"
+import { fetchData } from "../../utils/axios";
 interface ApiResponse {
   ok: boolean;
   success?: boolean; // This is optional, as it might not always be present
@@ -26,14 +26,14 @@ const schema = z.object({
     .min(6, { message: "Password should be at least 6 characters" }),
 });
 
-async function validateInput(data:any) {
+async function validateInput(data: any) {
   try {
     await schema.parseAsync(data);
     return null;
-  } catch (error:any) {
+  } catch (error: any) {
     return error.errors
-      .map((e:any) => e.message)
-      .filter((message:any) => !message.includes("Required"));
+      .map((e: any) => e.message)
+      .filter((message: any) => !message.includes("Required"));
   }
 }
 export function UserAuthForm() {
@@ -56,7 +56,7 @@ export function UserAuthForm() {
     }
   });
 
-  const validateField = async (name:any, value:any) => {
+  const validateField = async (name: any, value: any) => {
     const validationResult = await validateInput({ [name]: value });
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -64,16 +64,16 @@ export function UserAuthForm() {
     }));
   };
 
-  const registerUser = async (e:any) => {
+  const registerUser = async (e: any) => {
     e.preventDefault();
     const emailError = await validateInput({ email });
     const passwordError = await validateInput({ password });
     setErrors({
       email: emailError
-        ? emailError.find((e:any) => e.includes("Invalid email"))
+        ? emailError.find((e: any) => e.includes("Invalid email"))
         : null,
       password: passwordError
-        ? passwordError.find((e:any) =>
+        ? passwordError.find((e: any) =>
             e.includes("Password should be at least 6 characters")
           )
         : null,
@@ -86,14 +86,14 @@ export function UserAuthForm() {
       // }
       setIsLoading(true);
       // Call your API endpoint for registration
-      console.log("login response")
+      console.log("login response");
       const response = await fetchData({
         url: "/registerOrLogin",
         body: JSON.stringify({ email, password }),
         method: "post",
         headers: {
           "Content-Type": "application/json",
-        }
+        },
       });
       // if (response.ok) {
       // const responseData = await response.json();
@@ -115,11 +115,11 @@ export function UserAuthForm() {
         // console.log("error data:", errorData);
 
         toast.error(`${response.message}`);
-        router.push("/signup");
+        // router.push("/signup");
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      toast.error("Something went wrong during registration");
+      toast.error("Something went wrong");
       setIsLoading(false);
     }
   };

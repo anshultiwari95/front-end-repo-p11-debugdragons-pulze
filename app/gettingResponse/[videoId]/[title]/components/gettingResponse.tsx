@@ -326,7 +326,8 @@ const GettinResponse = () => {
     console.log("toplevelCommentRequestbody", topLevelCommentRequestBody);
   }
 
-  const createComment = async (parentCommentId?: string) => {
+  const createComment = async (parentCommentId?: string, event?: any) => {
+    event.preventDefault();
     console.log("called create comment parnet");
     replyCommentRequestBody.parentCommentId = parentCommentId
       ? parentCommentId
@@ -351,6 +352,10 @@ const GettinResponse = () => {
       //     ),
       //   }
       // );
+      let commentbody = parentCommentId
+        ? replyCommentRequestBody
+        : topLevelCommentRequestBody;
+      console.log("replyCommentreuestbody:", commentbody);
       const response = await fetchData({
         url: `/comments/createcomment/${videoId}`,
         method: "post",
@@ -362,6 +367,7 @@ const GettinResponse = () => {
       if (!response) {
         throw new Error("Failed to create comment");
       }
+      console.log("response from reply comment:", response);
 
       // Assuming the response contains the newly created comment
       // const newComment = await response.json();
@@ -369,6 +375,8 @@ const GettinResponse = () => {
       // You can handle the new comment data as needed
       console.log("New Comment:", response);
       toast.success("New Comment Created");
+      setReplyCommentTextareaValue("");
+      setTopCommentTextareaValue("");
       // Optionally, you can update the UI to include the new comment
       // For example, update a list of comments using setComments([...comments, newComment]);
     } catch (error) {
@@ -422,6 +430,7 @@ const GettinResponse = () => {
   };
 
   const handleStopRecording = async (event: any) => {
+    setMainCommentPostButtonShow(true);
     event.preventDefault();
 
     console.log("hadleStartRecord111");
@@ -432,7 +441,7 @@ const GettinResponse = () => {
       setIsNotRecording(true);
       console.log(`resultvideosrc in grandparent:${resultVideosrccontext}`);
       setMoveToRecordingCompleted(true);
-      setMainCommentPostButtonShow(true);
+
       setReplyCommentPostButtonShow(true);
     } catch (error) {
       console.error("Error stopping recording:", error);
@@ -546,6 +555,7 @@ const GettinResponse = () => {
         await (videoScreenRecorderRef.current as any).createVideoComment(
           parentCommentId
         );
+        fetchComments();
       } else if (
         topLevelCommentTabsValue === "camera" &&
         isIcon1Visible === true
@@ -554,6 +564,7 @@ const GettinResponse = () => {
         (cameraAudioRecorderRef.current as any).createVideoCameraComment(
           parentCommentId
         );
+        fetchComments();
       } else if (
         topLevelCommentTabsValue === "camera" &&
         isIcon1Visible === false
@@ -562,12 +573,14 @@ const GettinResponse = () => {
         (screenAudioRecorderRef.current as any).createVideoScreenComment(
           parentCommentId
         );
+        fetchComments();
       }
     } else {
       if (replyCommentTabsValue === "screen") {
         await (videoScreenRecorderRef.current as any).createVideoComment(
           parentCommentId
         );
+        fetchComments();
       } else if (
         replyCommentTabsValue === "camera" &&
         isIcon1Visible === true
@@ -575,6 +588,7 @@ const GettinResponse = () => {
         (cameraAudioRecorderRef.current as any).createVideoCameraComment(
           parentCommentId
         );
+        fetchComments();
       } else if (
         replyCommentTabsValue === "camera" &&
         isIcon1Visible === false
@@ -582,16 +596,17 @@ const GettinResponse = () => {
         (screenAudioRecorderRef.current as any).createVideoScreenComment(
           parentCommentId
         );
+        fetchComments();
       }
     }
     try {
       if (videoStatus != "Responded") {
         await handleUpdateStatus(respondedStatus);
+        fetchComments();
       }
     } catch (error) {
       console.error("coudnt update");
     }
-    await fetchComments();
   };
 
   const handlePostButton = (selectedTab: any) => {
@@ -1334,11 +1349,8 @@ const GettinResponse = () => {
                                       />
                                       <div className="bg-white w-5/6 rounded-lg flex  items-center justify-between">
                                         <span className="ml-3">
-                                          Camera Access
+                                          Camera {isIcon1Visible ? "On" : "Off"}
                                         </span>
-                                        <Button className="bg-white text-violet-600  hover:text-violet-900 hover:bg-white">
-                                          Allow
-                                        </Button>
                                       </div>
                                     </div>
                                     {/* ) : null} */}
@@ -1454,7 +1466,7 @@ const GettinResponse = () => {
                                 // onClick={() => createComment(comment.id)}
                                 onClick={(event) => {
                                   replyCommentTabsValue === "text"
-                                    ? createComment(comment.id)
+                                    ? createComment(comment.id, event)
                                     : handleCreateVideoComment(
                                         event,
                                         comment.id
@@ -1616,7 +1628,7 @@ const GettinResponse = () => {
                     value="screen"
                     className="flex flex-col justify-between items-center  h-full"
                   >
-                    <div className="w-full  flex h-5/6 ">
+                    <div className="w-full  flex h-3/6 mb-2 ">
                       <VideoScreenRecorder
                         onRecordingComplete={handleRecordingComplete}
                         playerRef={videoScreenRecorderRef}
@@ -1700,7 +1712,7 @@ const GettinResponse = () => {
                     value="camera"
                     className="flex flex-col justify-between items-center  h-full"
                   >
-                    <div className="w-full flex h-5/6  ">
+                    <div className="w-full flex h-3/6  ">
                       {isIcon1Visible ? (
                         <VideoAndAudioRecorder
                           onRecordingComplete={handleRecordingComplete}
@@ -1742,10 +1754,9 @@ const GettinResponse = () => {
                           onToggle={() => handleToggle(event)}
                         />
                         <div className="bg-white w-5/6 rounded-lg flex  items-center justify-between">
-                          <span className="ml-3">Camera Access</span>
-                          <Button className="bg-white text-violet-600  hover:text-violet-900 hover:bg-white">
-                            Allow
-                          </Button>
+                          <span className="ml-3">
+                            Camera {isIcon1Visible ? "On" : "Off"}
+                          </span>
                         </div>
                       </div>
                       {/* ) : null} */}

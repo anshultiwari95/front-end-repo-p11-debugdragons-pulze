@@ -244,7 +244,9 @@ const VideoAndAudioRecorder = forwardRef((props, ref) => {
         console.error(`Error uploading video:`);
       }
       const responseData = await response.json();
+
       const { result, success } = responseData;
+
       setResultVideosrccontext(
         `https://d1yt4919vxgwb5.cloudfront.net/${result.VideoUploadedToS3Details.Key}`
       );
@@ -262,7 +264,7 @@ const VideoAndAudioRecorder = forwardRef((props, ref) => {
       // };
 
       console.log(resultVideosrc);
-      if (responseData.success) {
+      if (success) {
         console.log(`src:${resultVideosrccontext}`);
         toast("Video uploaded successfully");
       } else {
