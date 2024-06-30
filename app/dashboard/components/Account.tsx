@@ -70,7 +70,7 @@ const Account = () => {
       <div className="w-full font-[Poppins] ">
         <div className="relative flex mx-2">
           <p>
-            <a className="absolute shadow-xl w-full bottom-1 left-0 flex flex-col  justify-start font-normal text-sm text-left m-1 ">
+            <a className="absolute shadow-xl w-full bottom-1 left-0 flex flex-col justify-start font-normal text-sm text-left m-1 ">
               {showSettings && (
                 <Settings setOpenSettings={toggleOpenSettings} />
               )}
@@ -79,15 +79,15 @@ const Account = () => {
           </p>
         </div>
         <div
-          className="flex  flex-row items-center justify-between px-2 h-12 cursor-pointer w-full"
+          className="flex flex-row items-center justify-between px-2 h-12 cursor-pointer w-full"
           onClick={toggleBoth}
         >
-          <div className="flex justify-center item-center "></div>
-          <AvatarDemo imageUrl={user?.image} />
-
-          <p className="px-2">{user?.name}</p>
+          <div className="flex justify-between items-center ">
+            <AvatarDemo imageUrl={user?.image} />
+            <p className="px-2">{user?.name}</p>
+            {showSettings ? <IoIosArrowUp /> : <IoIosArrowDown />}
+          </div>
         </div>
-        {showSettings ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </div>
     </div>
   );

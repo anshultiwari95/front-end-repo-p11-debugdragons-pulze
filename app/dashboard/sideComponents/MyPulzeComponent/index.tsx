@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
+import React, { useEffect, useState } from "react"; //
+//import io from "socket.io-client";
 
 import Header from "../../components/header";
 import CaughtUp from "../../components/caughtUp";
@@ -32,7 +32,7 @@ interface ReceivedVideosListProps {
   userVideos: Record<string, UserVideo>; // Assuming your IDs are strings
 }
 
-const socket = io("http://localhost:8080");
+//const socket = io("http://localhost:8080");
 
 const ActivityPage = ({
   userVideos,
@@ -104,7 +104,7 @@ const ActivityPage = ({
     //   socket.disconnect();
     // };
     // }, [socket, receivedVideos, userVideos]);
-  }, [socket, initialReceivedVideos, userVideos]);
+  }, [initialReceivedVideos, userVideos]);
 
   return (
     <div className="app-wrapper  h-screen  sm:w-full w-full overflow-x-hidden  ">

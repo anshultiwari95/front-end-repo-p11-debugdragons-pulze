@@ -67,7 +67,6 @@ import { log } from "console";
 // import { DatePickerWithPresets } from "ui/components/datepicker";
 
 import AutoComplete from "./Autocomplete";
-import { io } from "socket.io-client";
 import toast from "react-hot-toast";
 import DropDown from "./DropDown";
 import Account from "./Account";
@@ -99,7 +98,7 @@ export interface workspace {
   workspace_id: string;
 }
 
-const socket = io("http://localhost:8080");
+// const socket = io("http://localhost:8080");
 const Dashboard = () => {
   const [recordedVideoLink, setRecordedVideoLink] = useState(null);
   const videoScreenRecorderRef = useRef(null);
@@ -379,10 +378,10 @@ const Dashboard = () => {
         const recipients = response.recipients;
 
         toast.success("Video Sent");
-        socket.emit("sendVideo", {
-          recipients,
-          videoObjectFromRecorder,
-        });
+        // socket.emit("sendVideo", {
+        //   recipients,
+        //   videoObjectFromRecorder,
+        // });
         resultVideosrccontext = "";
         setIsNotRecording(true);
         setMoveToRecordingCompleted(false);
@@ -539,14 +538,14 @@ const Dashboard = () => {
       // fetchAllWorkspace();
     }
     // Listener for room creation and receiving video object
-    socket.on("roomCreated", (room) => {
-      console.log(`Room ${room} created`);
-    });
+    // socket.on("roomCreated", (room) => {
+    //   console.log(`Room ${room} created`);
+    // });
 
-    socket.on("receiveVideo", (videoObjectFromRecorder) => {
-      // Handle received video object
-    });
-  }, [session, userId, socket]);
+    // socket.on("receiveVideo", (videoObjectFromRecorder) => {
+    //   // Handle received video object
+    // });
+  }, [session, userId]);
   // useEffect
 
   useEffect(() => {
@@ -892,7 +891,7 @@ const Dashboard = () => {
                       <TabsContent
                         // style={{ minHeight: "300px", height: "auto" }}
                         value="camera"
-                        className="flex flex-col items-start items-center   "
+                        className="flex flex-col items-center"
                       >
                         <div className="w-full flex h-5/6  ">
                           {isIcon1Visible ? (

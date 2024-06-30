@@ -70,26 +70,23 @@ const DropDown = (props: Props) => {
   return (
     <div className="flex flex-col w-full text-[#0F172A]">
       <div
-        className="flex flex-row justify-center items-center cursor-pointer w-full "
-        // onClick={() => setToggle(!toggle)}
+        className="flex flex-col justify-center items-center cursor-pointer w-full "
+        onClick={() => setToggle(!toggle)}
       >
         {/* <WorkSpaceSelectingDropDown /> */}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild className="border-0 border-none">
-            <Button
-              className="flex justify-center gap-3 h-10 sm:w-[82%] md:w-[86%]  lg:w-[87%] bg-white relative text-[#0F172A] font-semibold border-none border-0 hover:bg-white"
-              onClick={handleClick}
-            >
+            <Button className="flex justify-center gap-3 h-10 sm:w-[82%] md:w-[86%]  lg:w-[87%] bg-white relative text-[#0F172A] font-semibold border-none border-0 hover:bg-white">
               {loading ? (
                 <LoadingSpinner />
               ) : (
                 `${props.selectedWorkspace?.name}'s team` || "Select WorkSpace"
               )}
               {/* {props.selectedWorkspace?.name} */}
-              {loading ? "" : toggle ? <ChevronUp /> : <ChevronDown />}
+              {loading ? "" : <ChevronDown />}
             </Button>
-          </DropdownMenuTrigger>
+          </DropdownMenuTrigger>{" "}
           <DropdownMenuContent className="w-56">
             <DropdownMenuLabel>WorkSpaces</DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -109,40 +106,6 @@ const DropDown = (props: Props) => {
               ))}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup className="flex flex-col gap-2">
-              {/* <DropdownMenuItem
-                onMouseDown={(e) => e.stopPropagation()}
-                onClick={(e) => e.stopPropagation()}
-                className=""
-              > */}
-              <div className="cursor-pointer flex justify-start hover:bg-purple-200">
-                <WorkSpaceSet
-                  selectedWorkspace={props.selectedWorkspace}
-                  updateWorkspace={props.setSelectedWorkspace}
-                />
-              </div>
-
-              {/* </DropdownMenuItem> */}
-              {/* <DropdownMenuItem> */}
-              <div className="cursor-pointer flex justify-start hover:bg-purple-200">
-                <Inviting
-                  selectedWorkspace={props.selectedWorkspace}
-                  updateWorkspace={props.setSelectedWorkspace}
-                />
-              </div>
-
-              {/* </DropdownMenuItem> */}
-              <div className="cursor-pointer flex justify-start hover:bg-purple-200">
-                {/* <DropdownMenuItem> */}
-                {/* <a className=""> */}
-                <CreatingWorkspace
-                  selectedWorkspace={props.selectedWorkspace}
-                  updateWorkspace={props.setSelectedWorkspace}
-                />
-                {/* </a> */}
-              </div>
-              {/* </DropdownMenuItem> */}
-            </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
 
@@ -154,6 +117,40 @@ const DropDown = (props: Props) => {
           {props.selectedWorkspace?.name}
           <IoIosArrowDown />
         </Button> */}
+        <div className="flex flex-col gap-2 mt-10">
+          {/* <DropdownMenuItem
+                onMouseDown={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
+                className=""
+              > */}
+          <div className="cursor-pointer flex justify-start hover:bg-purple-200">
+            <WorkSpaceSet
+              selectedWorkspace={props.selectedWorkspace}
+              updateWorkspace={props.setSelectedWorkspace}
+            />
+          </div>
+
+          {/* </DropdownMenuItem> */}
+          {/* <DropdownMenuItem> */}
+          <div className="cursor-pointer flex justify-start hover:bg-purple-200">
+            <Inviting
+              selectedWorkspace={props.selectedWorkspace}
+              updateWorkspace={props.setSelectedWorkspace}
+            />
+          </div>
+
+          {/* </DropdownMenuItem> */}
+          <div className="cursor-pointer flex justify-start hover:bg-purple-200">
+            {/* <DropdownMenuItem> */}
+            {/* <a className=""> */}
+            <CreatingWorkspace
+              selectedWorkspace={props.selectedWorkspace}
+              updateWorkspace={props.setSelectedWorkspace}
+            />
+            {/* </a> */}
+          </div>
+          {/* </DropdownMenuItem> */}
+        </div>
       </div>
       <>
         {/* {toggle && (
@@ -209,6 +206,7 @@ const DropDown = (props: Props) => {
           </p>
         </div> */}
       </>
+          
     </div>
   );
 };
