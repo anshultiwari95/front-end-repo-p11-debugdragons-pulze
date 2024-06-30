@@ -117,13 +117,13 @@ const DropDown = (props: Props) => {
           {props.selectedWorkspace?.name}
           <IoIosArrowDown />
         </Button> */}
-        <div className="flex flex-col gap-2 mt-10">
+        <div className="flex flex-col gap-2 mt-10 items-start justify-center">
           {/* <DropdownMenuItem
                 onMouseDown={(e) => e.stopPropagation()}
                 onClick={(e) => e.stopPropagation()}
                 className=""
               > */}
-          <div className="cursor-pointer flex justify-start hover:bg-purple-200">
+          <div className="cursor-pointer flex justify-start hover:bg-purple-200 hover:scale-110 hover:transition hover:-translate-y-1 hover:ease-in-out hover:delay-200">
             <WorkSpaceSet
               selectedWorkspace={props.selectedWorkspace}
               updateWorkspace={props.setSelectedWorkspace}
@@ -132,7 +132,7 @@ const DropDown = (props: Props) => {
 
           {/* </DropdownMenuItem> */}
           {/* <DropdownMenuItem> */}
-          <div className="cursor-pointer flex justify-start hover:bg-purple-200">
+          <div className="cursor-pointer flex justify-start hover:bg-purple-200 hover:scale-110 hover:transition hover:-translate-y-1 hover:ease-in-out hover:delay-200">
             <Inviting
               selectedWorkspace={props.selectedWorkspace}
               updateWorkspace={props.setSelectedWorkspace}
@@ -140,7 +140,7 @@ const DropDown = (props: Props) => {
           </div>
 
           {/* </DropdownMenuItem> */}
-          <div className="cursor-pointer flex justify-start hover:bg-purple-200">
+          <div className="cursor-pointer flex justify-start hover:bg-purple-200 hover:scale-110 hover:transition hover:-translate-y-1 hover:ease-in-out hover:delay-200">
             {/* <DropdownMenuItem> */}
             {/* <a className=""> */}
             <CreatingWorkspace
