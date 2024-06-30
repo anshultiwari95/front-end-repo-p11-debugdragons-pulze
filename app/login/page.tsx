@@ -155,7 +155,7 @@ import { ForgetPassword } from "./components/forgetPassword";
 //   description: "Authentication forms built using the components.",
 // };
 import CaughtIcon from "../../icons/FigmaIcon";
-import SigninButton from "../../components/SigninButton";;
+import SigninButton from "../../components/SigninButton";
 
 const LogIn = () => {
   return (
@@ -191,7 +191,6 @@ const LogIn = () => {
                 >
                   Signup
                 </Link>
-                <br /> <ForgetPassword />
               </div>
             </div>
           </div>

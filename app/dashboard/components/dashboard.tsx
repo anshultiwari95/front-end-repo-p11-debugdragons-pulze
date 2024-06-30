@@ -72,6 +72,8 @@ import DropDown from "./DropDown";
 import Account from "./Account";
 // import { VideoScreenRecorder } from "../VideoScreenRecorder/components/VideoScreenRecorderRest";
 // import MyTabs from "./components/tabs";
+import { redirect, useRouter } from "next/navigation";
+
 interface ReceivedVideo {
   id: string;
   userId: string;
@@ -144,6 +146,8 @@ const Dashboard = () => {
   const [allWorkspaces, setAllWorkspaces] = useState<Array<workspace>>([]);
   const [selectWorkspace, setSelectWorkspace] = useState<workspace>();
   const [isRecording, setIsRecording] = useState(false);
+
+  const router = useRouter();
 
   // const [showRrespondByComponent, setShowRespondByComponent] = useState(false);
   // const videoScreenRecorderRef = React.createRef();
@@ -570,6 +574,13 @@ const Dashboard = () => {
       // fetchAllWorkspace();
     }
   }, [userId, session]);
+
+  useEffect(() => {
+    if (!session?.user) {
+      router.push("/login");
+      // toast.success("Logged In");
+    }
+  });
 
   return (
     <div className="bg-slate-100 h-screen  w-screen flex">
