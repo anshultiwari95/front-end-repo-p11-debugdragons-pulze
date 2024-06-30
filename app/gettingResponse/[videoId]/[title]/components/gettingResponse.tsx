@@ -327,7 +327,9 @@ const GettinResponse = () => {
   }
 
   const createComment = async (parentCommentId?: string, event?: any) => {
-    event.preventDefault();
+    if (parentCommentId) {
+      event.preventDefault();
+    }
     console.log("called create comment parnet");
     replyCommentRequestBody.parentCommentId = parentCommentId
       ? parentCommentId
@@ -401,7 +403,7 @@ const GettinResponse = () => {
     //   onChange(e);
     // }
   };
-  const handleCreateComment = async () => {
+  const handleCreateComment = async (event: any) => {
     console.log("called top level comment creation");
     // await handleUpdateStatus(respondedStatus);
     await createComment(); // Assuming you want to create a top-level comment here
@@ -1876,6 +1878,15 @@ const GettinResponse = () => {
                         ? handleCreateVideoComment
                         : handleCreateComment
                     }
+                    // onClick={(event) => {
+                    //   if (typeComment === "text") {
+                    //     handleCreateComment(event);
+                    //   } else if (typeComment === "video") {
+                    //     handleCreateVideoComment;
+                    //   } else {
+                    //     handleCreateComment(event);
+                    //   }
+                    // }}
                     className="bg-violet-600 hover:bg-violet-700 mb-4 w-2/5 "
                     disabled={!mainCommentPostButtonShow}
                   >
