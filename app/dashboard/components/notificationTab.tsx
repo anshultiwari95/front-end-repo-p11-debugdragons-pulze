@@ -179,13 +179,6 @@ const NotificationTab: React.FC<NotificationTabProps> = ({
       recievedVideoNonFYICount = 1;
     }
   }
-  // const handleChildClick = (e) => {
-  //   // Prevent event propagation
-  //   e.stopPropagation();
-
-  //   // Open dialog or perform other actions
-  //   console.log("Dialog opened!");
-  // };
 
   const router = useRouter();
   const videoId = video?.video_id || "";

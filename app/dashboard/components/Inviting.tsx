@@ -43,8 +43,6 @@ export function Inviting(props: WorkspaceProps) {
       });
 
       if (response) {
-        // const data = await response.json();
-        // console.log("SendVideo response:", data);
         toast.success("member added successfully");
       } else {
         // const data = await response.json();

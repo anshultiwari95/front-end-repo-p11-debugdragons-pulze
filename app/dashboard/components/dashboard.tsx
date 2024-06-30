@@ -338,16 +338,16 @@ const Dashboard = () => {
       //   }),
       // });
 
-      if (!responseTime) {
-        // Check if any selected user has isToggleOn set to false
-        const anyToggleOff = selectedUsers.some(
-          (user) => !user.isToggleOn || user.isToggleOn === undefined
-        );
-        if (anyToggleOff) {
-          toast.error("Select the response time before sending Video");
-          return;
-        }
-      }
+      // if (!responseTime) {
+      //   // Check if any selected user has isToggleOn set to false
+      //   const anyToggleOff = selectedUsers.some(
+      //     (user) => !user.isToggleOn || user.isToggleOn === undefined
+      //   );
+      //   if (anyToggleOff) {
+      //     toast.error("Select the response time before sending Video");
+      //     return;
+      //   }
+      // }
 
       console.log("video sof", videoObjectFromRecorder);
       const response = await fetchData({
@@ -472,7 +472,7 @@ const Dashboard = () => {
     try {
       const response = await fetchData({
         url: "/deletevideo",
-        method: "post",
+        method: "delete",
         body: JSON.stringify({ videoId }),
       });
 

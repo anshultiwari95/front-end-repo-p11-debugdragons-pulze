@@ -341,9 +341,9 @@ export default function AutoComplete({
                 />
               </div>
             </div>
-            <div className="">
+            <div className="text-violet-600 flex justify-center  gap-1 cursor-pointer font-poppins font-light text-sm">
               {/* <DatePickerWithPresets /> */}
-              {dateFieldState != null ? (
+              {/* {dateFieldState != null ? (
                 <div
                   onClick={() => setDateFieldState(null)}
                   className="text-violet-600 flex justify-center  gap-1 cursor-pointer font-poppins font-light text-sm"
@@ -361,8 +361,10 @@ export default function AutoComplete({
                   setClickOnDialogTrigger={setClickOnDialogTrigger}
                   // setShowRespondByComponent={setShowRespondByComponent}
                 />
+
                 // <DateTimePicker granularity="second" hourCycle={12} />
-              )}
+              )} */}
+              Respond in 1 day
             </div>
           </ul>
         </div>
